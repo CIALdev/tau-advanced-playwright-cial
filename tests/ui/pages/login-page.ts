@@ -20,12 +20,22 @@ class LoginPage {
     await this.userName.fill(email);
   }
 
+  async fillUsername(username: string) {
+    await this.userName.fill(username);
+  }
+
   async fillPassword(password: string) {
     await this.password.fill(password);
   }
 
-  async doLogin(email: string, password: string) {
-    await this.fillEmail(email);
+  // async doLogin(email: string, password: string) {
+  //   await this.fillEmail(email);
+  //   await this.fillPassword(password);
+  //   await this.loginButton.click();
+  // }
+
+  async doLogin(username: string, password: string) {
+    await this.fillUsername(username);
     await this.fillPassword(password);
     await this.loginButton.click();
   }
