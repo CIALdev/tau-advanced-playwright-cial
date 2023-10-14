@@ -10,7 +10,7 @@ export default defineConfig({
   retries: 0,
   workers: undefined,
   reporter: 'html',
-  // timeout: 5000,
+  timeout: 5000,
   use: {
     storageState: 'storageState.json',
     trace: 'on',
