@@ -8,7 +8,6 @@ test.beforeEach(async ({ page }) => {
   await inputLogin.fill(user)
   await inputPass.fill(password)
   await signInButton.click
-  await page.goto('https://www.linkedin.com/jobs/search');
 });
 
 const TITLES = ['QA',
