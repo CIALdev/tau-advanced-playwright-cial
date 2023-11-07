@@ -5,6 +5,7 @@ test.beforeEach(async ({ page }) => {
   const inputPass = page.locator("#session_password");
   const signInButton = page.getByText("Sign in").nth(1)
   await page.goto('https://www.linkedin.com');
+  await signInButton.click()
   await inputLogin.fill(user)
   await inputPass.fill(password)
   await signInButton.click()
