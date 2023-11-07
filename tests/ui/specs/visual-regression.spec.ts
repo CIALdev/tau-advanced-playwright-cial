@@ -24,7 +24,7 @@ let profilePage: ProfilePage;
 let menuPage: MenuPage;
 
 test.beforeAll(async() => {
-    Runner = new VisualGridRunner({ testConcurrency: 5 });
+    Runner = new VisualGridRunner({ testConcurrency: 1 });
     const runnerName = 'Ultrafast Grid';
     Batch = new BatchInfo({name: `Book Store - New Tab - ${runnerName}`});
     

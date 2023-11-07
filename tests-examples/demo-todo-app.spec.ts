@@ -1,37 +1,37 @@
 import { test, expect, type Page } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('https://demo.playwright.dev/todomvc');
+  const inputLogin = page.locator("#session_key");
+  const inputPass = page.locator("#session_password");
+  await page.goto('https://www.linkedin.com');
+  await inputLogin.fill(user)
+  await inputPass.fill(password)
+  await inputPass.press('Enter')
+  await page.goto('https://www.linkedin.com/jobs/search');
 });
 
-const TODO_ITEMS = [
-  'buy some cheese',
-  'feed the cat',
-  'book a doctors appointment'
-];
+const TITLES = ['QA',
+'SDET',
+'Software Development Engineer in Test',
+'Software Engineer in test'
+]
 
-test.describe('New Todo', () => {
-  test('should allow me to add todo items', async ({ page }) => {
+const user = process.env.USERNAME!;
+const password = process.env.PASSWORD!;
+
+test.describe('Find Playwright jobs', () => {
+  test('should allow me to find jobs', async ({ page }) => {
     // create a new todo locator
-    const newTodo = page.getByPlaceholder('What needs to be done?');
+    const jobTitle = page.getByPlaceholder("Search by title, skill, or company");
+    const jobLocation = page.getByPlaceholder("City, state, or zip code");
 
-
-    // Make sure the list only has one todo item.
-    await expect(page.getByTestId('todo-title')).toHaveText([
-      TODO_ITEMS[0]
-    ]);
-
-    // Create 2nd todo.
-    await newTodo.fill(TODO_ITEMS[1]);
-    await newTodo.press('Enter');
+    // Fill
+    await jobTitle.fill(TITLES[0]);
+    await jobLocation.fill('EMEA');
+    await jobLocation.press('Enter');
 
     // Make sure the list now has two todo items.
-    await expect(page.getByTestId('todo-title')).toHaveText([
-      TODO_ITEMS[0],
-      TODO_ITEMS[1]
-    ]);
-
-    await checkNumberOfTodosInLocalStorage(page, 2);
+    await expect(page.getByRole("alert")).not.toBeVisible()
   });
 
   test('should clear text input field when an item is added', async ({ page }) => {

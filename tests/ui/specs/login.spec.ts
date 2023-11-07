@@ -3,12 +3,12 @@ import LoginPage from '../pages/login-page';
 import pages from '../../utils/pages';
 import userData from '../../data/user-data';
 
-const userName = process.env.USERNAME!;
+const userName = process.env.TESTUSER!;
 const password = process.env.PASSWORD!;
 let loginPage: LoginPage;
 
 // test.use({ storageState: { cookies: [], origins: [] } }); // doesn't share the logged in session
-// // test.use({ storageState: undefined }); // https://github.com/microsoft/playwright/issues/17396
+// test.use({ storageState: undefined }); // https://github.com/microsoft/playwright/issues/17396
 // test.describe.configure({ mode: 'serial' });
 
 test.beforeEach(async ({ page }) => {

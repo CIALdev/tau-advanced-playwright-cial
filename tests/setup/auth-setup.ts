@@ -4,15 +4,15 @@ import uiPages from '../utils/uiPages';
 
 const userFile = '.auth/user.json';
 
-setup('authenticate as user', async ({ page }) => {
-    const user = process.env.USERNAME_USER!;
+setup('authenticate', async ({ page }) => {
+    const user = process.env.USERNAME!;
     const password = process.env.PASSWORD!;
     await doLogin(page, user, password);
     await page.context().storageState({ path: userFile });
 });
 
 async function doLogin(page: Page, user:string, password: string) {
-    const baseURL = setup.info().project.use.baseURL!;
+    const baseURL = setup.info().project.use.basRfeURL!;
     const loginPage = new LoginPage(page);
   
     await page.goto(baseURL!+uiPages.login);
@@ -20,3 +20,4 @@ async function doLogin(page: Page, user:string, password: string) {
     await page.waitForURL(baseURL+uiPages.login);
     await loginPage.checkLoggedIn();
 }
+ 
